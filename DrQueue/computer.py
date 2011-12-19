@@ -113,7 +113,7 @@ class Computer(dict):
         ncpus = 0
         if osname == "Darwin":
             import subprocess
-            proc = subprocess.Popen(["system_profiler SPHardwareDataType | grep \"Number Of Processors\""], shell=True, stdout=subprocess.PIPE)
+            proc = subprocess.Popen(["system_profiler SPHardwareDataType | grep \"Processors\""], shell=True, stdout=subprocess.PIPE)
             output = proc.communicate()[0]
             ncpus = int(output.split(":")[1].split("\n")[0])
         if osname == "Linux":
@@ -134,7 +134,7 @@ class Computer(dict):
         ncorescpu = 0
         if osname == "Darwin":
             import subprocess
-            proc = subprocess.Popen(["system_profiler SPHardwareDataType | grep \"Total Number Of Cores\""], shell=True, stdout=subprocess.PIPE)
+            proc = subprocess.Popen(["system_profiler SPHardwareDataType | grep \"Cores\""], shell=True, stdout=subprocess.PIPE)
             output = proc.communicate()[0]
             total_cores = output.split(":")[1].split("\n")[0]
             ncorescpu = int(total_cores) / Computer.get_ncpus()
