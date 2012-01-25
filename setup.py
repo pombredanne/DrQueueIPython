@@ -1,6 +1,3 @@
-import ez_setup
-ez_setup.use_setuptools()
-
 import os, glob, shutil, sys, pwd, grp
 from setuptools import setup
 from distutils.core import setup, Command
@@ -92,12 +89,13 @@ class CreateDrQueueWorkDirs(Command):
         print("IPYTHON_DIR=" + drqueue_ipython)
 
 
+# register extra command
 cmdclass = {'create_drqueue_dirs': CreateDrQueueWorkDirs}
 
 
 setup(
     name = "DrQueueIPython",
-    version = "0.1",
+    version = "0.0.1",
     author = "Andreas Schroeder",
     author_email = "andreas@drqueue.org",
     description = ("This is a port of DrQueue to Python. IPython is used for network communication and task management."),
@@ -106,12 +104,12 @@ setup(
     url = "https://ssl.drqueue.org/redmine/projects/drqueueipython",
     packages = ['DrQueue'],
     scripts = glob.glob(os.path.join('bin', '*.py')),
-    install_requires = ['ipython>=0.11', 'pyzmq>=2.1.4'],
+    install_requires = ['ipython>=0.12', 'pyzmq>=2.1.4'],
     long_description = read('README.md'),
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Topic :: Utilities",
-        "License :: OSI Approved :: GPLv3 License",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
     ],
     cmdclass = cmdclass
 )

@@ -12,7 +12,7 @@ Licensed under GNU General Public License version 3. See LICENSE for details.
 import os, signal, subprocess, sys, platform
 from time import strftime,localtime
 import DrQueue
-from computer import Computer as DrQueueComputer
+from .computer import Computer as DrQueueComputer
 
 
 class Helper():
@@ -59,7 +59,8 @@ class Helper():
         """Run command in shell."""
         try:
             p = subprocess.Popen(command, shell=True, stdout=self.logfile, stderr=subprocess.STDOUT)
-        except OSError as (errno, strerror):
+        except OSError as e:
+            errno, strerror = e.args
             message = "OSError({0}) while executing renderer: {1}\n".format(errno, strerror)
             self.logfile.write(message)
             self.logfile.close()
